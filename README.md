@@ -89,11 +89,11 @@ HappyBug@HappyBugsComputer:~$ calculate
 
 #### Variable Save
 
-to be implemented
+​	Now you can save your variable in your `/user/UserName` directory, this will automatically happen when you `exit()` from the calculator. Also, every time you enter the calculator, it will load these variables. There's no need for you to worry about how to clear the records, for you can always redeclare the variable you want to use without any consideration. 
 
 #### Quit
 
-​	You can type `exit()` to return to the OSUI
+​	You can use `exit()` to return to the OSUI
 
 ```
 >>> exit()
