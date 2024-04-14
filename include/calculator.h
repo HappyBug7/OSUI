@@ -50,50 +50,50 @@ class calculator{
     int val_num;
 
     //methods
-    double stringToDouble(const string& str);
+    double StringToDouble(const string& str);
 
-    element pop(element stack[], int *top);
+    element Pop(element stack[], int *top);
 
-    void push(element stack[], int *top, element val);
+    void Push(element stack[], int *top, element val);
 
     void Express(element stack[], int top);
 
-    _stack Front_Translate(string str, element stack[]);
+    _stack FrontTranslate(string str, element stack[]);
 
-    element Base_Cal(_stack stack);
+    element BaseCal(_stack stack);
 
     double Cal(string str);
 
-    void str_Append(string*& arr, int& size, string val);
+    void StrAppend(string*& arr, int& size, string val);
 
-    void var_Append(var*& arr, int& size, var val);
+    void VarAppend(var*& arr, int& size, var val);
 
-    _string Spilt_func(string str);
+    _string SpiltFunc(string str);
 
     int TypeCheck(string str);
 
     bool ChangeVal(string str, double val);
 
-    string var_translate(string str);
+    string VarTranslate(string str);
 
-    void assign_func(string str);
+    void AssignFunc(string str);
 
     double GetVal(string str);
 
-    string remove_space(string str);
+    string RemoveSpace(string str);
 };
 
-double calculator::stringToDouble(const string& str) {
+double calculator::StringToDouble(const string& str) {
     char* end;
     return strtod(str.c_str(), &end);
 }
 
-calculator::element calculator::pop(element stack[], int *top) {
+calculator::element calculator::Pop(element stack[], int *top) {
   element val = stack[*top];
   *top -= 1;
   return val;
 }
-void calculator::push(element stack[], int *top, element val) {
+void calculator::Push(element stack[], int *top, element val) {
   *top += 1;
   stack[*top] = val;
 }
@@ -126,7 +126,7 @@ void calculator::Express(element stack[], int top){
   printf("\n");
 }
 
-calculator::_stack calculator::Front_Translate(string str, element stack[]){
+calculator::_stack calculator::FrontTranslate(string str, element stack[]){
   const int size = str.length();
   int top=0;
   int* pointer = &top;
@@ -153,22 +153,22 @@ calculator::_stack calculator::Front_Translate(string str, element stack[]){
             break;
       }
       element num;
-      num.val = stringToDouble(num_curr);
+      num.val = StringToDouble(num_curr);
       num.type = 1;
       num_curr = "";
-      push(stack, pointer ,num);
-      push(stack, pointer ,ele);
+      Push(stack, pointer ,num);
+      Push(stack, pointer ,ele);
     }else{
       num_curr.append(string(1,str[i]));
     }
   }
   element num;
-  num.val = stringToDouble(num_curr);
+  num.val = StringToDouble(num_curr);
   num.type = 1;
   num_curr = "";
-  push(stack, pointer ,num);
+  Push(stack, pointer ,num);
 
-  // element ulti_val = pop(stack, pointer);
+  // element ulti_val = Pop(stack, pointer);
   // return ulti_val.val;
   _stack return_stack;
   return_stack.stack = stack;
@@ -176,14 +176,14 @@ calculator::_stack calculator::Front_Translate(string str, element stack[]){
   return return_stack;
 }
 
-calculator::element calculator::Base_Cal(_stack stack){
+calculator::element calculator::BaseCal(_stack stack){
   int p_top = 0;
   int* pointer = &stack.top;
   int* p_pointer = &p_top;
   element processed_stack[stack.top];
   for(int i = 1; i <= stack.top; i++){
     if((stack.stack[i].type == 0)&&(stack.stack[i].val>2)){
-      element ob_1 = pop(processed_stack, p_pointer);
+      element ob_1 = Pop(processed_stack, p_pointer);
       element op = stack.stack[i];
       i++;
       element ob_2 = stack.stack[i];
@@ -199,9 +199,9 @@ calculator::element calculator::Base_Cal(_stack stack){
           val.val = ob_1.val / ob_2.val;
           break;
       }
-      push(processed_stack, p_pointer, val);
+      Push(processed_stack, p_pointer, val);
     }else{
-      push(processed_stack, p_pointer, stack.stack[i]);
+      Push(processed_stack, p_pointer, stack.stack[i]);
     }
   }
 
@@ -212,7 +212,7 @@ calculator::element calculator::Base_Cal(_stack stack){
   int* u_pointer = &u_top;
   for(int i = 1; i <= p_top; i++){
     if(processed_stack[i].type == 0){
-      element ob_1 = pop(ultimate_stack, u_pointer);
+      element ob_1 = Pop(ultimate_stack, u_pointer);
       element op = processed_stack[i];
       i++;
       element ob_2 = processed_stack[i];
@@ -228,12 +228,12 @@ calculator::element calculator::Base_Cal(_stack stack){
           val.val = ob_1.val - ob_2.val;
           break;
       }
-      push(ultimate_stack, u_pointer, val);
+      Push(ultimate_stack, u_pointer, val);
     }else{
-      push(ultimate_stack, u_pointer, processed_stack[i]);
+      Push(ultimate_stack, u_pointer, processed_stack[i]);
     }
   }
-  element val = pop(ultimate_stack, u_pointer);
+  element val = Pop(ultimate_stack, u_pointer);
   return val;
 }
 
@@ -268,8 +268,8 @@ double calculator::Cal(string str){
           element stack[cul_str.length()];
           element* processed;
           _stack data;
-          data = Front_Translate(cul_str, stack);
-          element val = Base_Cal(data);
+          data = FrontTranslate(cul_str, stack);
+          element val = BaseCal(data);
           char buffer[255];
           sprintf(buffer, "%f", val.val);
           std::string ss_str(buffer);
@@ -293,12 +293,12 @@ double calculator::Cal(string str){
   element stack[curr_str.length()];
   element* processed;
   _stack data;
-  data = Front_Translate(curr_str, stack);
-  element val = Base_Cal(data);
+  data = FrontTranslate(curr_str, stack);
+  element val = BaseCal(data);
   return val.val;
 }
 
-void calculator::str_Append(string*& arr, int& size, string val){
+void calculator::StrAppend(string*& arr, int& size, string val){
   int newsize = size +1;
   string* newarr = new string[newsize];
   for(int i = 0; i < size; i++){
@@ -310,7 +310,7 @@ void calculator::str_Append(string*& arr, int& size, string val){
   size = newsize;
 }
 
-void calculator::var_Append(var*& arr, int& size, var val){
+void calculator::VarAppend(var*& arr, int& size, var val){
   int newsize = size +1;
   var* newarr = new var[newsize];
   for(int i = 0; i < size; i++){
@@ -322,7 +322,7 @@ void calculator::var_Append(var*& arr, int& size, var val){
   size = newsize;
 }
 
-calculator::_string calculator::Spilt_func(string str){
+calculator::_string calculator::SpiltFunc(string str){
   string curr_str = "";
   string* strs = new string[0];
   int num = 0;
@@ -330,11 +330,11 @@ calculator::_string calculator::Spilt_func(string str){
     if(str[i]!=';'){
       curr_str.append(string(1,str[i]));
     }else{
-      str_Append(strs, num, curr_str);
+      StrAppend(strs, num, curr_str);
       curr_str="";
     }
   }
-  str_Append(strs, num, curr_str);
+  StrAppend(strs, num, curr_str);
   curr_str="";
   _string _str;
   _str.num = num;
@@ -365,7 +365,7 @@ bool calculator::ChangeVal(string str, double val){
   return 1;
 }
 
-string calculator::var_translate(string str){
+string calculator::VarTranslate(string str){
   string name_str = "";
   string return_str = "";
   bool state = 0;
@@ -400,7 +400,7 @@ string calculator::var_translate(string str){
   return return_str; 
 }
 
-void calculator::assign_func(string str){
+void calculator::AssignFunc(string str){
   string name_str = "";
   string value_str = "";
   bool state = 0;
@@ -416,10 +416,10 @@ void calculator::assign_func(string str){
     }
   }
   var val;
-  val.value = Cal(var_translate(value_str));
+  val.value = Cal(VarTranslate(value_str));
   val.name = name_str;
   if(ChangeVal(name_str, val.value)){
-    var_Append(var_stack, val_num, val);
+    VarAppend(var_stack, val_num, val);
   }
 }
 
@@ -432,7 +432,7 @@ double calculator::GetVal(string str){
   return 0;
 }
 
-string calculator::remove_space(string str){
+string calculator::RemoveSpace(string str){
   string return_str = "";
   for(int i = 0; i < str.length(); i++){
     if(str[i]!=' '){
