@@ -3,6 +3,8 @@
 
 #include<iostream>
 #include <cstdlib>
+#include <fstream>
+#include <string>
 using namespace std;
 
 class calculator{
@@ -81,6 +83,10 @@ class calculator{
     double GetVal(string str);
 
     string RemoveSpace(string str);
+
+    void LoadVal();
+
+    void SaveVal();
 };
 
 double calculator::StringToDouble(const string& str) {
@@ -441,4 +447,24 @@ string calculator::RemoveSpace(string str){
   }
   return return_str;
 }
+
+void calculator::LoadVal(){
+  string str;
+  ifstream file;
+  file.open("./user/HappyBug/calculate.txt");
+  while(getline(file, str)){
+    AssignFunc(str);
+  }
+  file.close();
+}
+
+void calculator::SaveVal(){
+  ofstream file;
+  file.open("./user/HappyBug/calculate.txt");
+  for(int i = 0; i<val_num; i++){
+    file << var_stack[i].name << "=" << var_stack[i].value << endl;
+  }
+  file.close();
+}
+
 #endif

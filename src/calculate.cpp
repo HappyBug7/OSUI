@@ -4,6 +4,7 @@
 int main(){
   calculator cal;
   cal.val_num = 0;
+  cal.LoadVal();
   for(;;){
     string str;
     calculator::_string strs;
@@ -13,6 +14,7 @@ int main(){
     strs = cal.SpiltFunc(str);
     for(int i = 0; i < strs.num; i++){
       if(strs.str[i]=="exit()"){
+        cal.SaveVal();
         return 0;
       }
       if(cal.TypeCheck(strs.str[i])){
