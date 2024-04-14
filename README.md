@@ -25,6 +25,8 @@ OSUI/
 |   |-- HappyBug/
 |-- History/
 |-- README.md
+|-- main.cpp
+|-- main.exe
 ```
 
 ### Calculate
