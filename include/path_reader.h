@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "env.h"
 class path_reader
 {
   private:
@@ -12,15 +13,15 @@ class path_reader
 };
 
 std::string path_reader::getPath(std::string name){
-  std::ifstream file("./PATH.txt");
+  std::ifstream file(base_path + "/PATH.txt");
   if (!file) {
     return "Error";
   }
 
   std::string line;
   while (std::getline(file, line)) {
-    if(line == "\".\\\\bin\\\\" + name + ".exe\"")
-    return line;
+    if(line == "\"/bin/" + name + ".exe\"")
+    return base_path + line;
   }
   file.close();
   return "Error";

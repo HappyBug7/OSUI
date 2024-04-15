@@ -1,5 +1,5 @@
 #include <iostream>
-#include "./include/path_reader.h"
+#include "../include/path_reader.h"
 
 int main() {
     for(;;){

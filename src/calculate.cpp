@@ -1,6 +1,7 @@
 #include<iostream>
 #include <cstdlib>
 #include "../include/calculator.h"
+#include "../include/env.h"
 int main(){
   calculator cal;
   cal.val_num = 0;

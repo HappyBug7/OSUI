@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <fstream>
 #include <string>
+#include "env.h"
 using namespace std;
 
 class calculator{
@@ -451,7 +452,7 @@ string calculator::RemoveSpace(string str){
 void calculator::LoadVal(){
   string str;
   ifstream file;
-  file.open("./user/HappyBug/calculate.txt");
+  file.open(base_path + "/user/HappyBug/calculate.txt");
   while(getline(file, str)){
     AssignFunc(str);
   }
@@ -460,7 +461,7 @@ void calculator::LoadVal(){
 
 void calculator::SaveVal(){
   ofstream file;
-  file.open("./user/HappyBug/calculate.txt");
+  file.open(base_path + "/user/HappyBug/calculate.txt");
   for(int i = 0; i<val_num; i++){
     file << var_stack[i].name << "=" << var_stack[i].value << endl;
   }
