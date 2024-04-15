@@ -14,20 +14,23 @@
 OSUI/
 |-- src/
 |   |-- calculate.cpp
+|	|-- OSUI.cpp
 |-- include/
 |   |-- calculator.h
-|-- |-- path_reader.h
+|   |-- path_reader.h
+|   |-- env.h
 |-- bin/
 |   |-- calculate.exe
+|   |-- OSUI.exe
 |-- lib/
 |-- temp/
 |-- user/
 |   |-- HappyBug/
+|       |-- calculate.txt
 |-- History/
 |-- README.md
-|-- main.cpp
-|-- main.exe
-|-- PATH.exe
+|-- PATH.txt
+|-- .gitignore
 ```
 
 ### Calculate
