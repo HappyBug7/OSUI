@@ -2,7 +2,7 @@
 
 ## Introduction
 
-​    This is a practice project, which is used to understand how an operate system works at the user interface. And that is the reason why this project is called OSUI(operate system user interface)
+​    This is a practice project, which was made to understand how an operate system works at the user interface. And that is the reason why this project is called OSUI(operate system user interface)
 
 ## Usage
 
