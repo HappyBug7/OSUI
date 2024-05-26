@@ -6,7 +6,7 @@
 
 ## Usage
 
-​	1) Clone this repository and run `main.exe`
+​	1) Clone this repository and run `OSUI.exe`
 
 ## Directory Structure
 
@@ -31,6 +31,7 @@ OSUI/
 |-- README.md
 |-- PATH.txt
 |-- .gitignore
+|-- Make
 ```
 
 ### Calculate
