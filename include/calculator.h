@@ -185,7 +185,7 @@ calculator::_stack calculator::FrontTranslate(string str, element stack[]){
 
 calculator::element calculator::BaseCal(_stack stack){
   int p_top = 0;
-  int* pointer = &stack.top;
+  // int* pointer = &stack.top;
   int* p_pointer = &p_top;
   element processed_stack[stack.top];
   for(int i = 1; i <= stack.top; i++){
@@ -273,7 +273,7 @@ double calculator::Cal(string str){
       if(curr_str[i]==')'){
         if(layer == curr_layer){
           element stack[cul_str.length()];
-          element* processed;
+          // element* processed;
           _stack data;
           data = FrontTranslate(cul_str, stack);
           element val = BaseCal(data);
@@ -298,7 +298,7 @@ double calculator::Cal(string str){
     curr_str = process_str;
   }
   element stack[curr_str.length()];
-  element* processed;
+  // element* processed;
   _stack data;
   data = FrontTranslate(curr_str, stack);
   element val = BaseCal(data);
